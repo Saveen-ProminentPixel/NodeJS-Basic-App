@@ -1,5 +1,5 @@
 import pg from "pg";
-import express, { query } from "express";
+import express, { query, response } from "express";
 import bodyParser from "body-parser";
 import moment from "moment";
 
@@ -90,6 +90,11 @@ export const updateJoinDate = async(request, response) => {
     response.status(200).send(`User modifed with ID : ${id}`);
 }
 
+export const notNullDobData = async(request, response) => {
+    const query = await client.query("SELECT * FROM trainee WHERE dob IS NOT NULL");
+    response.status(200).json(query.rows);
+}
+
 app.get("/trainee", getUsers);
 app.get("/trainee/:id", getUserById);
 app.post("/trainee", createUser);
@@ -97,6 +102,7 @@ app.put("/trainee/:id", updateUser);
 app.delete("/trainee/:id", deleteUser);
 app.put("/trainee/dob/:id", updateDOB); 
 app.put("/trainee/joinDate/:id", updateJoinDate);
+app.get("/trainee/notnulldob/data", notNullDobData);
 
 // await client.end();
 

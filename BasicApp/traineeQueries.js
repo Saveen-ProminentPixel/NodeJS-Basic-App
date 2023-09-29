@@ -120,6 +120,7 @@ export const nameEndWithH = async(request, response) => {
     console.log(query.rows);
 }
 
+
 client.on('error', (err) => {
     console.error('something bad has happened!', err.stack)
   });

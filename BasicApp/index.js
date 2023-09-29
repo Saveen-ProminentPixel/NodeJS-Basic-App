@@ -31,13 +31,14 @@ app.get("/", (request, response) => {
 
 
 app.get("/trainee", getUsers);
+app.get("/trainee/notnulldob", notNullDobData);  
 app.get("/trainee/:id", getUserById);
 app.post("/trainee", createUser);
 app.put("/trainee/:id", updateUser);
 app.delete("/trainee/:id", deleteUser);
 app.put("/trainee/dob/:id", updateDOB); 
 app.put("/trainee/joinDate/:id", updateJoinDate);
-app.get("/trainee/notnulldob/data", notNullDobData);
+
 app.put("/trainee/age/:id", updateAge);
 app.get("/trainee/ageGreaterThan30/data", ageGreaterThan30);
 app.get("/trainee/agegreaterthan/:age", ageGreaterThanX);

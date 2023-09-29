@@ -565,3 +565,47 @@
 //         });
 //     });
 // });
+
+import http from "http";
+import fs from "fs";
+
+http.createServer(function(req, res){
+    fs.readFile("demohtmlfile.html", function(err, data){
+        res.writeHead(200, {"Content-Type": "text/html"});
+        res.write(data);
+        return res.end();
+    });   
+}).listen(8080);
+
+fs.appendFile("mynewfile.txt", "This is my new file.", function(err){
+    if(err){
+        throw err;
+    };
+    console.log("updated");
+});
+
+fs.writeFile("mynewfile.txt", "This is my updated text.", function(err){
+    if(err){
+        throw err;
+    }
+    else{
+        console.log("File Updated again");
+        fs.unlink("mynewfile.txt", function(err){
+            if(err){
+                throw err;
+            }
+            console.log("File deleted!");
+        });
+    }
+});
+
+
+
+// fs.rename("mynewfile.txt", "mynewfile2.txt", function(err){
+//     if(err){
+//         throw err;
+//     }
+//     console.log("File got renamed");
+// });
+
+
